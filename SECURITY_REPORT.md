@@ -63,3 +63,43 @@ it has `require`, so it can do anything Node.js can:
 | Severity | Finding |
 |---|---|
 | **CRITICAL** | `backend/src/config/config.env` is committed to version control. It contains `DEV_API_KEY`, `DEV_SECRET_KEY`, `JWT_SECRET`, `ALCHEMY_API_KEY`, `ETHERSCAN_API_KEY`, and more. Even if these are placeholder values, the file is tracked by git and the `.gitignore` does not exclude `.env` files. |
+
+## Project Overview
+
+## What the project is
+
+**Dynamic DApp** is a blockchain gaming & DeFi platform composed of:
+
+| Layer | Tech |
+|---|---|
+| Frontend | React 18 + TypeScript, Vite, Tailwind CSS, Radix UI / shadcn |
+| Backend | Node.js + Express, WebSocket (`ws`) |
+| Data | In-memory mock data (`mockData.js`) - no real DB or blockchain |
+
+a blockchain gaming & DeFi platform with a React/TypeScript frontend, an Express/Node.js backend, and six feature areas: Gaming, DeFi, NFT Marketplace, Launchpad, Governance, and DAO. Everything runs on hardcoded mock data; there is no real blockchain or database integration.
+
+---
+
+## Commit Structure Analysis
+
+```
+923ad03 Update README
+de9b588 Edit README.md
+30ef7ba Edit README.md
+0dddc7d Merge branch 'alexcox052595' into main
+83150a3 Merge branch 'lincolnthompsonjfy2002916' into main
+...
+dbfd3a9 Implement initial functionality for tsconfig.app.json, tsconfig.json, vite.config.ts
+ed2378a Enhance tsconfig.app.json, tsconfig.json with additional features
+d1fc556 Add basic structure for vite-env.d.ts, tailwind.config.ts, tsconfig.json, vite.config.ts
+```
+
+The commit history exhibits a clear, repeating three-step pattern for every batch of files:
+
+1. `Add basic structure for <files>`
+2. `Implement initial functionality for <files>`
+3. `Enhance <files> with additional features` / `Complete implementation for <files>`
+
+This pattern is then merged in from a series of branches with randomised usernames (`warfelbyeon95om0`, `cletogbencocxg0b`, `merelmkosaluaxu0`, `lampindokkoj55ya`, etc.) - eight such branches visible in the history. Each agent session worked in isolation on its own branch and was merged back to `main` in a round-robin fashion.
+
+**Verdict:** The commit structure is almost entirely automated. No human would label a `tsconfig.json` file with "Add basic structure" → "Implement initial functionality" → "Enhance with additional features" across three successive commits.
