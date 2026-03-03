@@ -1,4 +1,8 @@
-# ⚠️ CRITICAL SECURITY ALERT - EMBEDDED BACKDOOR DETECTED
+# ⚠️ Security Analysis Report — "Fake Job Demo" Dynamic DApp (Blockchain Gaming & DeFi Platform)
+
+**This is an active malware. Do not run this code.**
+
+## CRITICAL SECURITY ALERT - EMBEDDED BACKDOOR DETECTED
 
 **Source**: Linkedin job offer
 
